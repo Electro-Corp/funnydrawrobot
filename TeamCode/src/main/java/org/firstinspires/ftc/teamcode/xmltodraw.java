@@ -9,6 +9,8 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
+import org.firstinspires.ftc.teamcode.shapes.*;
+
 public class xmltodraw {
     private ArrayList<Shape> shapes = new ArrayList<Shape>();
 
@@ -22,7 +24,7 @@ public class xmltodraw {
 
             // Get all lines
             NodeList nList = doc.getElementsByTagName("line");
-            for (int temp = 0; temp < nList.getLength(); temp++) {x
+            for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
@@ -42,7 +44,7 @@ public class xmltodraw {
 
             // Get all rectangles
             nList = doc.getElementsByTagName("rect");
-            for (int temp = 0; temp < nList.getLength(); temp++) {x
+            for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
@@ -53,8 +55,9 @@ public class xmltodraw {
                     int width = Integer.parseInt(eElement.getAttribute("width"));
                     Point p1 = new Point(x1, y1);
                     Point p2 = new Point(x1 + width, y1 + height);
-
-                    Rect tmp = new Rect(p1, p2);
+                    Point p15 = new Point(x1 + width, y1);
+                    Point p25 = new Point(x1, y1 + height);
+                    Rect tmp = new Rect(p1, p2, p15, p25);
 
                     shapes.add(tmp);
                 }
