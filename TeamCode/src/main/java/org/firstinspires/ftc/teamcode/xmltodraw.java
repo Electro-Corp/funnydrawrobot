@@ -41,7 +41,8 @@ public class xmltodraw {
                     shapes.add(tmp);
                 }
             }
-
+            // nvm we dont do rectangles here
+/*
             // Get all rectangles
             nList = doc.getElementsByTagName("rect");
             for (int temp = 0; temp < nList.getLength(); temp++) {
@@ -61,7 +62,7 @@ public class xmltodraw {
 
                     shapes.add(tmp);
                 }
-            }
+            }*/
 
         } catch(Exception e){
             // do nothing
