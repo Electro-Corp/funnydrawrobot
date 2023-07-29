@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.drive;
 
 //import com.acmerobotics.dashboard.config.Config;
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 /*
@@ -33,6 +34,8 @@ public class DriveConstants {
      * from DriveVelocityPIDTuner.
      */
     public static final boolean RUN_USING_ENCODER = true;
+    public static final RevHubOrientationOnRobot.LogoFacingDirection LOGO_FACING_DIR = null;
+    public static final RevHubOrientationOnRobot.UsbFacingDirection USB_FACING_DIR = null;
     public static PIDFCoefficients MOTOR_VELO_PID = new PIDFCoefficients(0, 0, 0, 13.2);
     //f = getMotorVelocityF(MAX_RPM / 60 * TICKS_PER_REV));
 
