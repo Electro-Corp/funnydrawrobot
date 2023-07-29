@@ -21,13 +21,16 @@ import java.util.List;
  */
 @Config
 @Autonomous(group = "drive")
+// TODO: make work (pls)
 public class Paint extends LinearOpMode {
 
     xmltodraw XMLSystem = new xmltodraw("ftc.svg");
     @Override
     public void runOpMode() throws InterruptedException {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
-        while(!isStarted()) { }
+        while(!isStarted()) {;;}
+
+
 
         List<Trajectory> trajectories = new ArrayList<>();
         for(int i = 0; i < XMLSystem.points.size(); i++){
@@ -35,8 +38,18 @@ public class Paint extends LinearOpMode {
                     .lineTo(new Vector2d(XMLSystem.points.get(i).x, XMLSystem.points.get(i).y))
                     .build());
         }
+        boolean first = true;
         for (Trajectory trajectory:trajectories) {
-            drive.followTrajectory(trajectory);
+
+            if (!first) {
+
+                // TODO: implement code to check color and switch crayon if necisagry
+                drive.followTrajectory(trajectory);
+            } else {
+                first = false;
+                drive.followTrajectory(trajectory);
+                // TODO: implement code to put crayon down
+            }
         }
     }
 }
