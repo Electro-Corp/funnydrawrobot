@@ -12,7 +12,7 @@ import org.w3c.dom.Element;
 import org.firstinspires.ftc.teamcode.shapes.*;
 
 public class xmltodraw {
-    private ArrayList<Shape> shapes = new ArrayList<Shape>();
+    public ArrayList<Point> points = new ArrayList<Point>();
 
     public xmltodraw(String name){
         try {
@@ -36,9 +36,9 @@ public class xmltodraw {
                     Point p1 = new Point(x1, y1);
                     Point p2 = new Point(x2, y2);
 
-                    Line tmp = new Line(p1, p2);
 
-                    shapes.add(tmp);
+                    points.add(p1);
+                    points.add(p2);
                 }
             }
             // nvm we dont do rectangles here
