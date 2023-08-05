@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.roadrunner.drive.SampleMecanumDrive;
 
 
 import java.util.ArrayList;
@@ -24,21 +24,42 @@ import java.util.List;
 // TODO: make work (pls)
 public class Paint extends LinearOpMode {
 
-    xmltodraw XMLSystem = new xmltodraw("ftc.svg");
+    xmltodraw XMLSystem;
     @Override
     public void runOpMode() throws InterruptedException {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
-        while(!isStarted()) {;;}
 
+        try {
+            XMLSystem = new xmltodraw("/sdcard/out.svg");
+        }catch (Exception e){
 
+        }
 
+        while(!isStarted()) {
+            telemetry.addData("File Name: ", XMLSystem.fileName);
+            telemetry.addData("XMLSystem Points: ", XMLSystem.points.size());
+            telemetry.addData("Error: ", XMLSystem.error);
+            telemetry.update();
+        }
+        int j = 0, c = 0;
         List<Trajectory> trajectories = new ArrayList<>();
         for(int i = 0; i < XMLSystem.points.size(); i++){
-            trajectories.add(drive.trajectoryBuilder(new Pose2d())
-                    .lineTo(new Vector2d(XMLSystem.points.get(i).x, XMLSystem.points.get(i).y))
-                    .build());
+            telemetry.addData("I = ", i);
+            telemetry.addData("Errors: ", j);
+            telemetry.addData("Completed: ", c);
+            telemetry.update();
+            try {
+                trajectories.add(drive.trajectoryBuilder(new Pose2d())
+                        .strafeTo(new Vector2d(XMLSystem.points.get(i).x, XMLSystem.points.get(i).y))
+                        .build());
+                c++;
+            }catch (Exception e){
+                j++;
+            }
         }
+
         boolean first = true;
+        c = 0;
         for (Trajectory trajectory:trajectories) {
 
             if (!first) {
@@ -50,6 +71,9 @@ public class Paint extends LinearOpMode {
                 drive.followTrajectory(trajectory);
                 // TODO: implement code to put crayon down
             }
+            telemetry.addData("Drove: ", c);
+            telemetry.update();
+            c++;
         }
     }
 }
