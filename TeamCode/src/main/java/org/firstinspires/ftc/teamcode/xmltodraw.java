@@ -25,7 +25,7 @@ public class xmltodraw {
     public String fileName = "null_file_ptr (not really a pointer i just thought it sounded cool)";
 
 
-    float min = 0.0f, max = 10f;
+    float min = 0.0f, max = 10.0f;
     public xmltodraw(String name) throws FileNotFoundException {
         fileName = name;
         /*File inputFile = new File(name);
